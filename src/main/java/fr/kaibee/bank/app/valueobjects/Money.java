@@ -1,7 +1,5 @@
 package fr.kaibee.bank.app.valueobjects;
 
-import fr.kaibee.bank.app.exceptions.MoneyAmountMustNotBeNullException;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -10,11 +8,7 @@ public class Money {
 
     private final BigDecimal amount;
 
-    public Money(BigDecimal amount) {
-        if (amount == null) {
-            throw new MoneyAmountMustNotBeNullException("Money amount must not be null");
-        }
-
+    private Money(BigDecimal amount) {
         this.amount = amount;
     }
 
