@@ -1,6 +1,9 @@
 package fr.kaibee.bank.app.valueobjects;
 
+import fr.kaibee.bank.app.exceptions.MoneyAmountMustNotBeNullException;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
@@ -8,7 +11,24 @@ public class Money {
     private final BigDecimal amount;
 
     public Money(BigDecimal amount) {
+        if (amount == null) {
+            throw new MoneyAmountMustNotBeNullException("Money amount must not be null");
+        }
+
         this.amount = amount;
+    }
+
+    public Money(double amount) {
+        this.amount = setScale(BigDecimal.valueOf(amount));
+    }
+
+    public boolean isLessOrEqualToZero(){
+        return this.amount.compareTo(BigDecimal.ZERO) <= 0 ;
+    }
+
+    public Money add(Money money) {
+        BigDecimal totalAmount = this.amount.add(money.getAmount());
+        return new Money(setScale(totalAmount));
     }
 
     public BigDecimal getAmount() {
@@ -20,11 +40,16 @@ public class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount.equals(money.amount);
+        return amount.compareTo(money.amount) == 0;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(amount);
     }
+
+    private BigDecimal setScale(BigDecimal input) {
+        return input.setScale(2, RoundingMode.HALF_EVEN);
+    }
+
 }

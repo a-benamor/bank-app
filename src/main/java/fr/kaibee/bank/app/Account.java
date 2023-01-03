@@ -1,5 +1,6 @@
 package fr.kaibee.bank.app;
 
+import fr.kaibee.bank.app.exceptions.AmountToDepositMustBeStrictlyPositiveException;
 import fr.kaibee.bank.app.valueobjects.AccountId;
 import fr.kaibee.bank.app.valueobjects.Money;
 import fr.kaibee.bank.app.valueobjects.Operation;
@@ -17,6 +18,14 @@ public class Account {
         this.accountId = accountId;
         this.balance = balance;
         this.operations = new ArrayList<>();
+    }
+
+    public void depositMoney(Money moneyToDeposit) {
+        if (moneyToDeposit.isLessOrEqualToZero()){
+            throw new AmountToDepositMustBeStrictlyPositiveException("The amount to deposit must be strictly positive");
+        }
+
+        this.balance = this.balance.add(moneyToDeposit);
     }
 
     public AccountId getAccountId() {
