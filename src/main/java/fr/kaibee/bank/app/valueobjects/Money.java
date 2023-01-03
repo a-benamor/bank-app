@@ -26,9 +26,18 @@ public class Money {
         return this.amount.compareTo(BigDecimal.ZERO) <= 0 ;
     }
 
+    public boolean isGreaterThan(Money money) {
+        return this.amount.compareTo(money.getAmount())>0;
+    }
+
     public Money add(Money money) {
         BigDecimal totalAmount = this.amount.add(money.getAmount());
         return new Money(setScale(totalAmount));
+    }
+
+    public Money subtract(Money money) {
+        BigDecimal newAmount = this.amount.subtract(money.getAmount());
+        return new Money(setScale(newAmount));
     }
 
     public BigDecimal getAmount() {
