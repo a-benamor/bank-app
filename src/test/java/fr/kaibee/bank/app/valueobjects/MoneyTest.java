@@ -3,9 +3,9 @@ package fr.kaibee.bank.app.valueobjects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class MoneyShould {
+class MoneyTest {
     @Test
-    void have_the_right_amount_for_add_operations(){
+    void should_have_the_right_amount_for_add_operations(){
         Money first = new Money(100.8723);
         Money second = new Money(222.7512);
         Money third = new Money(300);
@@ -16,7 +16,7 @@ class MoneyShould {
     }
 
     @Test
-    void have_the_right_amount_for_subtract_operations(){
+    void should_have_the_right_amount_for_subtract_operations(){
         Money first = new Money(500.8523);
         Money second = new Money(200.3333);
         Money third = new Money(100);
@@ -28,7 +28,7 @@ class MoneyShould {
     }
 
     @Test
-    void have_the_right_amount_for_mixed_operations(){
+    void should_have_the_right_amount_for_mixed_operations(){
         Money first = new Money(500.8523);
         Money second = new Money(200.3333);
         Money third = new Money(100);
@@ -39,7 +39,7 @@ class MoneyShould {
     }
 
     @Test
-    void have_the_right_result_for_equal_method(){
+    void should_have_the_right_result_for_equal_method(){
         Money first = new Money(500);
         Money second = new Money(500.00);
         Money third = new Money(500.10);
@@ -49,7 +49,7 @@ class MoneyShould {
     }
 
     @Test
-    void have_the_right_result_for_is_less_than_zero_method(){
+    void should_have_the_right_result_for_is_less_than_zero_method(){
         Money first = new Money(-10);
         Money second = new Money(0.00);
         Money third = new Money(0);
@@ -60,7 +60,7 @@ class MoneyShould {
     }
 
     @Test
-    void have_the_right_result_for_is_greater_than_method(){
+    void should_have_the_right_result_for_is_greater_than_method(){
         Money first = new Money(100.9);
         Money second = new Money(100.6);
         Money third = new Money(-10);
