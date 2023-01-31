@@ -18,7 +18,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BankAccountShould {
+class BankAccountTest {
     private static final String UTC = "UTC";
 
     private AccountId accountId;
@@ -35,12 +35,7 @@ class BankAccountShould {
     }
 
     @Test
-    void works() {
-        org.assertj.core.api.Assertions.assertThat(true).isTrue();
-    }
-
-    @Test
-    void have_the_right_account_information_after_deposit_operation() {
+    void should_have_the_right_account_information_after_deposit_operation() {
         Money moneyToDeposit = new Money(100.5);
 
         account.depositMoney(moneyToDeposit);
@@ -57,7 +52,7 @@ class BankAccountShould {
     }
 
     @Test
-    void throw_an_exception_when_money_to_deposit_is_negative(){
+    void should_throw_an_exception_when_money_to_deposit_is_negative(){
         Money negativeAmount = new Money(-50);
 
         AmountToDepositOrWithdrawMustBeStrictlyPositiveException amountToDepositMustBeStrictlyPositiveException = Assertions.assertThrows(
@@ -70,7 +65,7 @@ class BankAccountShould {
     }
 
     @Test
-    void throw_an_exception_when_money_to_deposit_is_zero(){
+    void should_throw_an_exception_when_money_to_deposit_is_zero(){
         Money zeroAmount = new Money(0);
 
         AmountToDepositOrWithdrawMustBeStrictlyPositiveException amountToDepositMustBeStrictlyPositiveException = Assertions.assertThrows(
@@ -83,7 +78,7 @@ class BankAccountShould {
     }
 
     @Test
-    void have_the_right_account_information_after_withdraw_operation() {
+    void should_have_the_right_account_information_after_withdraw_operation() {
         Money moneyToWithdraw = new Money(50);
 
         account.withdrawMoney(moneyToWithdraw);
@@ -100,7 +95,7 @@ class BankAccountShould {
     }
 
     @Test
-    void throw_an_exception_when_money_to_withdraw_is_negative() {
+    void should_throw_an_exception_when_money_to_withdraw_is_negative() {
         Money negativeAmount = new Money(-50);
 
         AmountToDepositOrWithdrawMustBeStrictlyPositiveException amountToWithdrawMustBeStrictlyPositiveException = Assertions.assertThrows(
@@ -113,7 +108,7 @@ class BankAccountShould {
     }
 
     @Test
-    void throw_an_exception_when_account_balance_is_insufficient_to_make_a_withdrawal() {
+    void should_throw_an_exception_when_account_balance_is_insufficient_to_make_a_withdrawal() {
         Money amountToWithdraw = new Money(250);
 
         InsufficientAccountBalanceException insufficientAccountBalanceException= Assertions.assertThrows(
@@ -126,7 +121,7 @@ class BankAccountShould {
     }
 
     @Test
-    void let_customer_withdraw_all_its_saving() {
+    void should_let_customer_withdraw_all_its_saving() {
         account.withdrawMoney(initialBalance);
 
         Money expectedAccountBalance = new Money(0);
